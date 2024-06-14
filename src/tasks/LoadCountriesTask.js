@@ -1,18 +1,19 @@
-import papa from "papaparse";
+import Papa from "papaparse";
 import features from "../data/file.json";
+import Oscar from '../cases_country.csv';
 
 class LoadCountryTask {
   covid19DataUrl =
-    "https://github.com/simpleFran/interactiveMap/blob/master/cases_country.csv";
+    "http://github.com/simpleFran/interactiveMap/blob/master/cases_country.txt";
   setState = null;
 
   load = (setState) => {
     this.setState = setState;
-    papa.parse(this.covid19DataUrl, {
-      delimiter: "",
+    Papa.parse(Oscar, {
+      // delimiter: "",
       download: true,
       header: true,
-      // downloadRequestBody:undefined,
+      
       complete: (results) => {
         this.#processCovidData(results.data);
         console.log("RESULTADO:",results);
